@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Create Event</title>
+</head>
+<body>
+    <h1>Create Event</h1>
+
+    <!-- Display flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Event creation form -->
+    <form method="post">
+        {{ form.csrf_token }}
+        <p>
+            {{ form.event_name.label }}<br>
+            {{ form.event_name(size=40) }}
+        </p>
+        <p>
+            {{ form.event_description.label }}<br>
+            {{ form.event_description(cols=40, rows=5) }}
+        </p>
+        <p>
+            {{ form.event_date.label }}<br>
+            {{ form.event_date() }}
+        </p>
+        <p>
+            {{ form.event_start_time.label }}<br>
+            {{ form.event_start_time() }}
+        </p>
+        <p>
+            {{ form.event_end_time.label }}<br>
+            {{ form.event_end_time() }}
+        </p>
+        <p>
+            <input type="submit" value="Create Event">
+        </p>
+    </form>
+
+    <!-- Button to Events List -->
+    <p>
+        <a href="{{ url_for('list_events') }}">
+            <button type="button">View Events List</button>
+        </a>
+    </p>
+</body>
+</html>

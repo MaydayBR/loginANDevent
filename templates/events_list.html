@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Events List</title>
+</head>
+<body>
+    <h1>Events List</h1>
+
+    <!-- Display flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Events Table -->
+    {% if events %}
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+            </tr>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.name.text }}</td>
+                <td>{{ event.start.local }}</td>
+                <td>{{ event.end.local }}</td>
+                <td>{{ event.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No events found.</p>
+    {% endif %}
+
+    <!-- Back to Home Button -->
+    <p>
+        <a href="{{ url_for('dashboard') }}">Back to Home</a>
+    </p>
+</body>
+</html>

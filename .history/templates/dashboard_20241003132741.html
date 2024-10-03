@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Hello, you are logged in.</h1>
+    <a href="{{ url_for('logout') }}">Logout</a><br>
+    <a href="{{ url_for('create_event') }}">Create an Event</a><br>
+    <a href="{{ url_for('events_list') }}">View Available Events</a>
+</body>
+</html>
